@@ -1,0 +1,7 @@
+History.txt
+Manifest.txt
+README.txt
+Rakefile
+bin/rayd8or
+lib/rayd8or.rb
+test/test_rayd8or.rb
