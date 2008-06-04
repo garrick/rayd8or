@@ -10,7 +10,8 @@ usefull actions.
 
 == FEATURES/PROBLEMS:
 
-* Doesn't do anything yet
+* Parsing for CruiseControl using HPricot (brute force)
+* nice generic Rayd8orSample module for holding sample data
 
 == SYNOPSIS:
 

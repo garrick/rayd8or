@@ -1,6 +1,6 @@
 require 'server/cruise_control_sampler.rb'
-require 'server/cc_project_info.rb'
-require 'server/cc_rb_project_info.rb'
+require 'server/web_cc_project_info.rb'
+require 'shared/rayd8orsample.rb'
 require 'test/unit'
 require 'rubygems'
 require 'flexmock/test_unit'
@@ -15,12 +15,12 @@ class TestCruiseControlSampler < Test::Unit::TestCase
 
   def test_build_project_info_for_java_version
     @unit = CruiseControlSampler.new(:cc)
-    assert @unit.build_project_info.is_a?(CCProjectInfo)
+    assert @unit.build_project_info.is_a?(WebCCSample)
   end
 
   def test_build_project_info_for_ruby_version
     @unit = CruiseControlSampler.new(:ccrb)
-    assert @unit.build_project_info.is_a?(CCRBProjectInfo) 
+    assert @unit.build_project_info.is_a?(Rayd8orSample) 
   end
 
   def test_build_project_info_blows_up
