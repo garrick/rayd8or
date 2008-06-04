@@ -4,7 +4,6 @@ require 'shared/cc_rb_sample.rb'
 class CCRBProjectInfo < CCRBSample
   def build_data_map! source
     document = REXML::Document.new(source)
-    puts "ready to handle document"
     title_str = ""
     date_str = ""
     document.elements.each('/rss/channel/item/title') do |ele|

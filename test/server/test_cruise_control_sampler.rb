@@ -3,6 +3,7 @@ require 'server/web_cc_project_info.rb'
 require 'shared/rayd8orsample.rb'
 require 'test/unit'
 require 'rubygems'
+require 'ostruct'
 require 'flexmock/test_unit'
 
 class TestCruiseControlSampler < Test::Unit::TestCase
@@ -34,13 +35,20 @@ class TestCruiseControlSampler < Test::Unit::TestCase
   #elements.each do |x| puts x.to_html end #Get's the string
   def test_parse_vs_standard_page
     @unit = CruiseControlSampler.new(:cc)
-    fake_page = Object.new
-    fake_agent = WWW::Mechanize.new
-    flexmock(fake_agent).should_receive(:get).once.with('http://localhost:8080/rss').and_return {
-  fake_page
-}
+    fake_page = OpenStruct.new
+    fake_page.code = 200
+    class << fake_page
+      def to_s
+        "Fake page text here"
+      end
+    end
+    fake_agent = OpenStruct.new
+    fake_agent.get = fake_page
     @unit.agent = fake_agent
-    @unit.load_page_text! 'http://localhost:8080/rss'
+    fake_page = Object.new
+    @unit.agent = fake_agent
+    @unit.url = 'http://localhost:8080/rss'
+    @unit.load_page_text! 
   end
 
   def x_test_test_xml_parsing

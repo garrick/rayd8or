@@ -1,0 +1,24 @@
+#!/usr/bin/env ruby -I:lib
+#require 'rubygems'
+#require 'rayd8or'
+require 'lib/server/rayd8orsrvr.rb'
+require 'lib/server/simple_http_sampler.rb'
+
+rayd8orsrvr = Rayd8orsrvr.new
+rayd8orsrvr.port = 5501
+simple_http_sampler = SimpleHttpSampler.new
+simple_http_sampler.url = "http://www.google.com"
+rayd8orsrvr.add_sampler simple_http_sampler
+DRb.start_service("druby://localhost:#{rayd8orsrvr.port}", rayd8orsrvr) 
+puts "Starting Rayd8or server on port #{rayd8orsrvr.port}"
+main_loop_thread = Thread.new("main_loop")  {
+  puts "starting thread..."
+  while true
+  puts "monitoring..."
+    rayd8orsrvr.monitor_loop
+    sleep(7)
+  end
+  puts "stopping thread..."
+}
+DRb.thread.join # Don't exit just yet! 
+
