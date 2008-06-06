@@ -41,11 +41,11 @@ class TestRayd8orsrvr < Test::Unit::TestCase
       @unit.public_add_sampler abstract_sampler
   end
 
-  def test_monitor_loop_with_observer
+  def test_monitor_loop_with_observer_uses_map
       fake_simple_html_sample = SimpleHttpSample.new
       abstract_sampler = AbstractSampler.new
       observer = Object.new
-      flexmock(observer).should_receive(:update).once.with(SimpleHttpSample) 
+      flexmock(observer).should_receive(:update).once.with(Hash) 
       flexmock(abstract_sampler).should_receive(:do_sample).once.and_return(fake_simple_html_sample)
       @unit.subscribe_to_all observer
       @unit.public_add_sampler abstract_sampler

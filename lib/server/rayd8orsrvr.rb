@@ -15,8 +15,9 @@ class Rayd8orsrvr
 
   def monitor_loop
     @samplers.each do |sampler|  
+      result = sampler.sample
       changed 
-      notify_observers sampler.sample 
+      notify_observers result.data_map
     end
   end
 

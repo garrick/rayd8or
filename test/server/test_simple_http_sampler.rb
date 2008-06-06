@@ -23,7 +23,7 @@ class TestSimpleHttpSampler < Test::Unit::TestCase
     fake_page = OpenStruct.new
     fake_page.code = 200
     class << fake_page
-      def to_s
+      def content
         "Fake page text here"
       end
     end
@@ -32,12 +32,13 @@ class TestSimpleHttpSampler < Test::Unit::TestCase
     @unit.agent = agent_stub
     @unit.url = "http://www.google.com"
     @unit.load_page_text! 
-    assert_equal "Fake page text here", @unit.page_text
+    assert_equal "Fake page text here", @unit.text
   end
 
   def test_do_sample
     flexmock(@unit).should_receive(:load_page_text!).once
-    flexmock(@unit).should_receive(:page_text).once.and_return("foo")
+    flexmock(@unit).should_receive(:text).once.and_return("foo is here")
+    flexmock(@unit).should_receive(:title).once.and_return("foo")
     flexmock(@unit).should_receive(:response_code).once.and_return(200)
     result = @unit.public_do_sample 
   end

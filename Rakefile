@@ -11,12 +11,15 @@ namespace :test do
   end
   desc 'Aggregate code coverage for unit, functional and integration tests'
   task :coverage => "test:coverage:clean"
-  %w[server shared].each do |target|
+  %w[shared].each do |target|
     namespace :coverage do
       Rcov::RcovTask.new(target) do |t|
         t.libs << "test"
-        t.test_files = FileList["test/#{target}/test_*.rb"]
-        t.output_dir = "test/coverage/#{target}"
+        #t.test_files = FileList["test/#{target}/test_*.rb"]
+        t.test_files = FileList["test/server/test_*.rb"] + FileList["test/shared/test_*.rb"]
+
+#        t.output_dir = "test/coverage/#{target}"
+        t.output_dir = "test/coverage/all"
         t.verbose = true
         t.rcov_opts << '--aggregate coverage.data'
       end

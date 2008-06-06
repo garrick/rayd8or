@@ -18,7 +18,7 @@ class AbstractSampler
 
 protected
   def do_sample
-    raise RuntimeError.new "I'm abstract.  Override and return an instance of Rayd8orSample.class."    
+    raise RuntimeError.new("I'm abstract.  Override and return an instance of Rayd8orSample.class.") 
   end
 
 end

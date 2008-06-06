@@ -12,11 +12,12 @@ usefull actions.
 
 * Parsing for CruiseControl using HPricot (brute force)
 * nice generic Rayd8orSample module for holding sample data
+* Small hash-only bug dute to drb serialization
 
 == SYNOPSIS:
 
-  FIX need to discribe server stuff here
-  FIX need to discribe client stuff here
+  Still only Google checking proof of concept Sample Server
+  Still only http sample observing client
 
 == REQUIREMENTS:
 
@@ -24,7 +25,7 @@ usefull actions.
 
 == INSTALL:
 
-* FIX (sudo gem install, anything else)
+* git clone at the moment.  Will gem up once it's looking better.
 
 == LICENSE:
 

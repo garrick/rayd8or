@@ -58,12 +58,6 @@ class TestWebCCProjectInfo< Test::Unit::TestCase
     result = @unit.parse_status status_html 
     assert_equal "failed", result, "Should have 'failed'"
   end
-  
-  def test_parse_status_failed
-    status_html ="<td class=\"index-failed\" align=\"center\">failed</td>"
-    result = @unit.parse_status status_html 
-    assert_equal "failed", result, "Should have 'failed'"
-  end
 
   def test_parse_last_date_for_nil
     last_date_html = "<td class=\"data date failure\"></td>"

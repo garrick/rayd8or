@@ -5,9 +5,11 @@ class SimpleHttpSample
   
   def initialize
     super
-    @data_map = {:text => nil, :http_status => nil}
+    @data_map = {:text => nil, :title => nil, :http_status => nil}
     @data_source_name = "SimpleHttp" 
     @data_source_version= "0.1" 
+    define_data_map_methods
   end
+
 
 end

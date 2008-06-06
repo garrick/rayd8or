@@ -2,7 +2,7 @@
 require 'lib/client/rayd8or.rb'
 
 client = Rayd8or.new
-DRb.start_service 
 server = DRbObject.new(nil, "druby://localhost:5501") 
+DRb.start_service 
 server.subscribe_to_all(client) 
 DRb.thread.join
